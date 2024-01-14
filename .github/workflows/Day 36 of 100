@@ -1,0 +1,28 @@
+import os, time
+
+PeopleNameList = []
+
+def printList():
+	counter = 1
+	print("\033[35m"+ "Printing the list:" + "\033[0m")
+	for i in PeopleNameList:
+			print(f"{counter}. {i}")
+			counter += 1
+	print()
+
+while True:
+	print("\033[32m" + "Write down your first name" + "\033[0m")
+	AddFirstName = input("First Name > ").strip().capitalize()
+	print("\033[33m" + "Write down your last name" + "\033[0m")
+	AddLastName = input("Last Name > ").strip().capitalize()
+	AddName = f"{AddFirstName} {AddLastName}"
+	if AddName not in PeopleNameList:
+		PeopleNameList.append(AddName)
+		time.sleep(1)
+		os.system("clear")
+	elif AddName in PeopleNameList:
+		print()
+		print("This name is already in the list")
+		time.sleep(1)
+		os.system("clear")
+	printList()
