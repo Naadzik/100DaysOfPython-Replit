@@ -1,0 +1,20 @@
+print("Input your sentence")
+sentence = input("> ")
+print()
+for letter in sentence:
+  if letter.lower() == "r":
+    print('\033[31m' + letter, end="") #red
+  elif letter.lower() == "b":
+    print('\033[34m' + letter, end="") #blue
+  elif letter.lower() == "g":
+    print('\033[32m' + letter, end="") #green
+  elif letter.lower() == "p":
+    print('\033[35m' + letter, end="") #purple
+  elif letter.lower() == "y":
+    print('\033[33m' + letter, end="") #yellow
+  elif letter.lower() == " ":
+    print('\033[37m' + letter, end="") #white
+  elif letter.lower() == ".":
+    print('\033[36m' + letter, end="") #white
+  else:
+    print(letter, end="") #back to default
