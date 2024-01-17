@@ -1,0 +1,57 @@
+import random, os, time
+
+listOfWords = ["british", "suave", "integrity", "accent", "evil", "genius", "Downton"]
+
+WordChosen = random.choice(listOfWords)
+GuessedLetters = ""
+WrongedLetters = ""
+GoodGuesses = 0
+BadGuesses = 0
+
+def CurrentAnswer(GuessedLetters):
+  xyz = ""
+  for letter in WordChosen:
+    if letter in GuessedLetters:
+      #print(letter, end="")
+      xyz += letter
+    else:
+      #print("_", end="")
+      xyz += "_"
+  return xyz
+
+while True:
+  print()
+  print(WordChosen)
+  print("Choose a letter: ")
+  LetterChosen = input("> ").lower()
+  if LetterChosen in GuessedLetters or LetterChosen in WrongedLetters:
+    print("You've already used this letter!")
+    break
+  else:
+    if BadGuesses < 6:
+      if LetterChosen in WordChosen:
+        GuessedLetters += LetterChosen
+        GoodGuesses += 1
+        print("Correct!")
+        print()
+        print(CurrentAnswer(GuessedLetters))
+        print()
+        time.sleep(1)
+        os.system("clear")
+      else:
+        WrongedLetters += LetterChosen
+        BadGuesses += 1
+        print("Wrong!")
+        print()
+        print(CurrentAnswer(GuessedLetters))
+        print()
+        time.sleep(1)
+        os.system("clear")
+    else:
+      os.system("clear")
+      print()
+      print("You've exhausted your guesses!")
+      print(f"You've had {GoodGuesses} good guesses and {BadGuesses} bad guesses.")
+      print(f"The word was {WordChosen}.")
+      print("Your good guesses were,", print(GuessedLetters) + ".")
+      exit()
