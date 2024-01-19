@@ -1,0 +1,24 @@
+Website = {"name" : None, "url": None, "desc": None, "rating": None}
+
+print("Input the name")
+Website["name"] = input("> ").strip().lower()
+print("Input the url")
+Website["url"] = input("> ").strip().lower()
+print("Input the description")
+Website["desc"] = input("> ").strip().capitalize()
+print("Input the rating")
+Website["rating"] = input("> ").strip()
+
+for name,value in Website.items():
+  print(f"{name}: {value}")
+
+
+
+website = {"name": None, "url": None, "desc": None, "rating": None}
+
+for name in website.keys():
+  website[name] = input(f"{name}: ")
+
+print()
+for name, value in website.items():
+  print(f"{name}: {value}")
