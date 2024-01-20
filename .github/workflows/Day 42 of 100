@@ -1,0 +1,37 @@
+import os, time
+
+MokéBeast = {"Name" : None, "Type": None, "Move": None, "Starting Health Points": None, "Starting Mana Points": None}
+
+print("👾 MokéBeast - The Non-Copyright Generic Beast Battle Game 👾")
+print()
+print("Create your own beast!")
+print()
+time.sleep(2)
+os.system("clear")
+
+for name in MokéBeast.keys():
+  if name == "Type":
+    print("Available types: air, fire, water, grass, poison, electric, ground and rock.")
+  MokéBeast[name] = input(f"{name}: ").strip().title()
+  time.sleep(2)
+  os.system("clear")
+
+print()
+for name, value in MokéBeast.items():
+  if MokéBeast["Type"] == "Air":
+    print("\033[1;37m", end='')
+  elif MokéBeast["Type"] == "Fire":
+    print("\033[0;31m", end='')
+  elif MokéBeast["Type"] == "Water":
+    print("\033[0;34m", end='')
+  elif MokéBeast["Type"] == "Grass":
+    print("\033[0;32m", end='')
+  elif MokéBeast["Type"] == "Poison":
+    print("\033[0;35m", end='')
+  elif MokéBeast["Type"] == "Electric":
+    print("\033[1;33m", end='')
+  elif MokéBeast["Type"] == "Ground":
+    print("\033[0;33m", end='')
+  elif MokéBeast["Type"] == "Rock":
+    print("\033[0;30m", end='')
+  print(f"{name}: {value}")
