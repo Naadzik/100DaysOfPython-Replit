@@ -1,0 +1,32 @@
+import random
+
+BingoNumbers = []
+
+def RandomBingo():
+  while True:
+    if len(BingoNumbers) < 8:
+      bingo = random.randint(10,90)
+      if bingo in BingoNumbers:
+        continue
+      if bingo not in BingoNumbers:
+        BingoNumbers.append(bingo)
+        continue
+    else:
+      break
+  BingoNumbers.sort()
+  return BingoNumbers
+
+def prettyPrint():
+  print(f"{bingo[0][0]: <2}  |  {bingo[0][1]}   |  {bingo[0][2]}")
+  print("-----------------")
+  print(f"{bingo[1][0]}  | {bingo[1][1]} |  {bingo[1][2]}")
+  print("-----------------")
+  print(f"{bingo[2][0]}  |  {bingo[2][1]}   |  {bingo[2][2]}")
+
+RandomBingo()
+
+bingo = [ [BingoNumbers[0], BingoNumbers[1], BingoNumbers[2]],
+          [BingoNumbers[3], "BINGO", BingoNumbers[4]],
+          [BingoNumbers[5], BingoNumbers[6], BingoNumbers[7]], ]
+
+prettyPrint()
