@@ -1,0 +1,59 @@
+import random, os, time
+
+BingoNumbers = []
+xPoints = 0
+tries = 0
+
+def RandomBingo():
+  while True:
+    if len(BingoNumbers) < 8:
+      bingo = random.randint(10,90)
+      if bingo in BingoNumbers:
+        continue
+      if bingo not in BingoNumbers:
+        BingoNumbers.append(bingo)
+        continue
+    else:
+      break
+  BingoNumbers.sort()
+  return BingoNumbers
+
+def prettyPrint():
+  print() 
+  for row in bingo: 
+    for item in row: 
+      # item refers to each item in the column for that row
+     print(f"{item:^10}", end=" | ") 
+      # :^10 means 10 characters as the space with the data in the center. The end character has been changed to space vertical line space to make it look more like a table.
+  
+    print() 
+  
+  print()
+
+RandomBingo()
+
+bingo = [ [BingoNumbers[0], BingoNumbers[1], BingoNumbers[2]],
+          [BingoNumbers[3], " BINGO", BingoNumbers[4]],
+          [BingoNumbers[5], BingoNumbers[6], BingoNumbers[7]], ]
+
+while True: 
+  tries += 1
+  prettyPrint()
+  print()
+  print(f"Next number? You already guessed {xPoints} times!")
+  NextNumber = int(input("> "))
+  for row in range(3):
+    for item in range(3):
+      if bingo[row][item] == NextNumber:
+        bingo[row][item] = "X"
+        xPoints += 1
+        print("You got it!")
+        time.sleep(1)
+        os.system("clear")
+  if xPoints == 8:
+    print("You have won! It took you", tries, "tries.")
+    prettyPrint()
+    time.sleep(3)
+    break
+  elif xPoints < 8:
+    continue
