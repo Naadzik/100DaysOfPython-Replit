@@ -1,0 +1,78 @@
+import os, time
+
+ToDoList = []
+newrow = []
+
+def prettyPrint(WhatPriority):
+  print()
+  if WhatPriority == "All":
+    for row in ToDoList: 
+      for item in row:
+        print(f"{item:^10}", end=" | ")
+      print()
+    print()
+  else:
+    for row in ToDoList:
+      if row[2] == WhatPriority:
+        for item in row:
+          print(f"{item:^10}", end=" | ")
+  time.sleep(1)
+  print()
+  print()
+          
+def ToDoListAdd():
+  ToDo = input ("What is the task? > ").strip().capitalize()
+  ToDue = input ("When is it due by? > ").strip().capitalize()
+  ToPrio = input ("What is the priority? > ").strip().capitalize()
+  newrow = [ToDo, ToDue, ToPrio]
+  if ToDo not in ToDoList:
+    ToDoList.append(newrow)
+  else:
+    print ("This task is already in the list.")
+  time.sleep(1)
+  os.system("clear")
+
+def ToDoListRemove():
+  ToDo = input ("Removing an item > ")
+  if ToDo in ToDoList:
+    ToDoList.remove(ToDo)
+  else:
+    print("This thing is not on your to do list!")
+  time.sleep(1)
+  os.system("clear")
+
+def ToDoListEdit():
+  ToDoEdit = input("Which item would you like to edit? > ")
+  found = False
+  for row in ToDoList:
+    if ToDoEdit in row:
+      found = True
+  if not found:
+    print("Couldn't find that!")
+    return
+  for row in ToDoList:
+    if ToDoEdit in row:
+        ToDoList.remove(row)
+        ToDoListAdd()
+  time.sleep(1)
+  os.system("clear")
+  
+def ToDoListView():
+    WhatPriority = input("Do you want to view all or by priority? > ").strip().capitalize()
+    prettyPrint(WhatPriority)
+
+while True:
+  print("To Do List Manager:")
+  print()
+  print(f"Do you want to view, add, remove or edit an item from the to do list? Your list currently has {len(ToDoList)} items.")
+  menu = input("> ").strip().lower()
+  if menu == "view":
+    ToDoListView()
+  elif menu =="add":
+    ToDoListAdd()
+  elif menu == "remove":
+    ToDoListRemove()
+  elif menu == "edit":
+    ToDoListEdit()
+  else:
+    print("I don't recognize that command!")
