@@ -1,0 +1,62 @@
+import os, time
+
+MokéBeast = {"Name" : None, "Type": None, "Move": None, "Starting Health Points": None, "Starting Mana Points": None}
+MokéDex = {}
+colors = {
+  "Air": "\033[1;37m",
+  "Fire": "\033[0;31m",
+  "Water": "\033[0;34m",
+  "Grass": "\033[0;32m",
+  "Poison": "\033[0;35m",
+  "Electric": "\033[1;33m",
+  "Ground": "\033[0;33m",
+  "Rock": "\033[0;30m"
+}
+
+def prettyPrint():
+  os.system("clear")
+  print(f"{'Name':^12}\t{'Type':^10}\t{'Move':^10}\t{'HP':^6}\t{'MP':^6}")
+  for key, value in MokéDex.items():
+    color = colors.get(value["type"], "")  # Get the color for the MokéBeast type, default to empty string if type is not found
+    print(color, end='')  # Print the color
+    print(f"""{key:^12}|{value["type"]:^10}|{value["move"]:^10}|{value["hp"]:^6}|{value["mp"]:^6}""")
+    time.sleep(1)
+  print()
+
+print("👾 MokéBeast - The Non-Copyright Generic Beast Battle Game 👾")
+print()
+print("Create your own beast!")
+print()
+time.sleep(2)
+os.system("clear")
+
+while True:
+  print("Add your Beast!")
+  print()
+  name = input("Name > ").title()
+  time.sleep(0.5)
+  os.system("clear")
+  print("Available types: air, fire, water, grass, poison, electric, ground and rock.")
+  type = input("Type > ").title()
+  time.sleep(0.5)
+  os.system("clear")
+  move = input("Move > ").title()
+  time.sleep(0.5)
+  os.system("clear")
+  hp = int(input("HP > "))
+  time.sleep(0.5)
+  os.system("clear")
+  mp = int(input("MP > "))
+  time.sleep(0.5)
+  os.system("clear")
+  MokéDex[name] = { "type": type, "move": move, "hp": hp, "mp": mp}
+  time.sleep(0.5)
+  os.system("clear")
+  again = input("Again? y/n: ").strip().lower()
+  if again == "y":
+    os.system("clear")
+    continue
+  else:
+    break
+  
+prettyPrint()
