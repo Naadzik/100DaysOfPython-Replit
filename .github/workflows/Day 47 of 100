@@ -1,0 +1,97 @@
+import os, time, random
+
+TopTrumps = {}
+PlayerWins = 0
+CompWins = 0
+
+def CompChoice(PlayerCharacter):
+  CompCharacter = random.choice(list(TopTrumps.keys()))
+  while CompCharacter == PlayerCharacter:
+    CompCharacter = random.choice(list(TopTrumps.keys())) 
+  return CompCharacter
+
+def prettyPrintNames():
+  for key in TopTrumps:
+    print(f"{key}")
+
+def Score(PlayerStat, CompStat):
+  global PlayerWins, CompWins
+  if PlayerStat > CompStat:
+    print("The player wins!")
+    PlayerWins += 1
+  elif PlayerStat == CompStat:
+    print("It's a draw! Both sides lose a point!")
+    PlayerWins -= 1
+    CompWins -= 1
+  else:
+    print("The computer wins!")
+    CompWins += 1
+  print(f"Player: {PlayerWins} | Computer: {CompWins}")
+
+def again():
+  again = input("Again? y/n: ").strip().lower()
+  if again == "y":
+    os.system("clear")
+  else:
+    os.system("clear")
+    print("Thanks for playing!")
+    print(f"Player: {PlayerWins} | Computer: {CompWins}")
+    time.sleep(3)
+    os.system("clear")
+    exit()
+
+for i in range(0,4):
+  name = input(f"Input #{i} character name > ")
+  int = random.randint(1,100)
+  str = random.randint(1,100)
+  cod = random.randint(1,100)
+  jump = random.randint(1,100)
+  TopTrumps[name] = { "int": int, "str": str, "cod": cod, "jump": jump}
+
+print()
+print("----------")
+print("TOP TRUMPS")
+print("----------")
+print()
+time.sleep(2)
+os.system("clear")
+
+while True:
+  print("Available characters:")
+  print()
+  prettyPrintNames()
+  print()
+  print("Pick your character")
+  PlayerCharacter = input("> ").strip().title()
+  print()
+  CompCharacter = CompChoice(PlayerCharacter)
+  print(f"Computer has chosen {CompCharacter}")
+  print("----------")
+  print()
+  print("Available skills:")
+  print()
+  print(f"{'Inteligence (i)'}, {'Strength (s)'}, {'Coding (c)'}, {'Jump (j)'}")
+  print()
+  print("Pick your skill")
+  SkillChosen = input("> ").strip().lower()
+  if SkillChosen[0] == "i":
+    SkillChosen = "int"
+  elif SkillChosen[0] == "s":
+    SkillChosen = "str"
+  elif SkillChosen[0] == "c":
+    SkillChosen = "cod"
+  elif SkillChosen[0] == "j":
+    SkillChosen = "jump"
+  else:
+    print("This skill does not exist!")
+    break
+  print()
+  print(f"The player's character: {PlayerCharacter} has {TopTrumps[PlayerCharacter][SkillChosen]} skill in {SkillChosen}")
+  print(f"The computer's character: {CompCharacter} has {TopTrumps[CompCharacter][SkillChosen]} skill in {SkillChosen}")
+  PlayerStat = TopTrumps[PlayerCharacter][SkillChosen]
+  CompStat = TopTrumps[CompCharacter][SkillChosen]
+  print()
+  Score(PlayerStat, CompStat)
+  print()
+  time.sleep(1)
+  again()
