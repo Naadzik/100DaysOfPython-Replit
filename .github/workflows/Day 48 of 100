@@ -1,0 +1,20 @@
+f = open("high.score.txt", "a+")
+
+while True:
+  print()
+  initials = input("Input your 3 initials > ").upper()
+  score = input("Input your score (max 100 000) > ")
+  print()
+  print("Added to highscores!")
+  f.write(f"{initials} {score}\n")
+  print()
+  again = input("Add another? y/n > ")
+  if again == "y":
+    continue
+  elif again == "n":
+    break
+  else:
+    print("This option does not exist")
+    break
+
+f.close()
