@@ -1,0 +1,19 @@
+f = open("high.score","r")
+scores = f.read().split("\n")
+f.close()
+
+maxscore = 0
+maxname = None
+currentname = None
+currentscore = 0
+
+for rows in scores:
+  data = rows.split()
+  if data != []:
+    currentscore = int(data[1])
+    currentname = data[0]
+    if currentscore > maxscore:
+      maxscore = currentscore
+      maxname = currentname
+    
+print(f"Current leader is {maxname}, who wins with {maxscore} points!")
