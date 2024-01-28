@@ -1,0 +1,43 @@
+import os, time, random
+
+def FileRead():
+  os.system("clear")
+  f = open("my.ideas","r")
+  ideas = f.read().split("\n")
+  f.close()
+  idea = random.choice(ideas)
+  print(f"The random idea from your list is - {idea}.")
+  time.sleep(2)
+  os.system("clear")
+
+def FileAppend():
+  os.system("clear")
+  f = open("my.ideas","a+")
+  print("What is the idea?")
+  NewIdea = input("> ")
+  f.write(f"\n{NewIdea}")
+  os.system("clear")
+  print(f"Your idea - {NewIdea} - has been added!")
+  time.sleep(2)
+  os.system("clear")
+  f.close()
+
+def Menu(menu):
+  if menu == "a":
+    FileAppend()
+  elif menu == "r":
+    FileRead()
+  elif menu == "e":
+    print("Thanks for playing!")
+    exit()
+  else:
+    print("Invalid input")
+    os.system("clear")
+
+while True:
+  print("🌟 Idea Storage 🌟")
+  print()
+  print("Add an idea or see a random idea? (a/r). Would you like to exit? (e)")
+  menu = input("> ").lower()
+  print()
+  Menu(menu)
